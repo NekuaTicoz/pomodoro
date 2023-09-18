@@ -1,10 +1,10 @@
 let chrono = document.getElementById("chrono");
-let tempsTravail = 1499;
-let tempsRepos = 1499;
+let tempsTravail = 4;
+let tempsRepos = 4;
 let temps = tempsTravail;
 const bouttonTravail = document.getElementById("travail");
 const bouttonRepos = document.getElementById("repos");
-const bouttonStart = document.getElementById("start");
+const bouttonDebut = document.getElementById("debut");
 compteurTravail = true; //si true alors travail sinon repos
 compteurReset = false; //si true alors pret a reset sinon start
 
@@ -30,13 +30,13 @@ function travailRepos() { //verifie si on change de travail a repos et change de
     }
 
     if (compteurTravail) {
-        document.getElementById("travailRepos").textContent = "Travail";
         changementBouttons();
         passageTempsTravailRepos();
+        changementCouleur();
     } else {
-        document.getElementById("travailRepos").textContent = "Repos";
         changementBouttons();
         passageTempsTravailRepos();
+        changementCouleur();
     }
 }
 
@@ -44,18 +44,28 @@ function changementBouttons() {
     bouttonTravail.disabled = !compteurTravail;
     bouttonRepos.disabled = compteurTravail;
     if (compteurReset) {
-        bouttonStart.className = "fa-solid fa-rotate-right fa-2xl";
+        bouttonDebut.className = "fa-solid fa-rotate-right fa-2xl";
+        bouttonDebut.textContent = "Relancer";
     } else {
-        bouttonStart.className = "fa-solid fa-check fa-2xl";
+        bouttonDebut.className = "fa-solid fa-play fa-2xl";
+        bouttonDebut.textContent = "Debut";
+    }
+}
+
+function changementCouleur() {
+    if (compteurTravail) {
+        document.getElementById("body").style.backgroundColor = "#ddebee";
+    } else {
+        document.getElementById("body").style.backgroundColor = "#185b64"
     }
 }
 
 function passageTempsTravailRepos() { //gere le changement de temps
     if (compteurTravail) {
-        temps = tempsTravail;
+        temps = tempsTravail + 1;
         affichageTemps(); //affiche le temps de début d'une itération
     } else {
-        temps = tempsRepos;
+        temps = tempsRepos + 1;
         affichageTemps();//affiche le temps de début d'une itération (évite l'affichage d'un 00:00 et d'un secondes perdu pour l'itération suivante)
     }
 }
@@ -66,7 +76,7 @@ function passageTempsTravailRepos() { //gere le changement de temps
 
 changementBouttons();//met a jour les bouttons travail/repos/start
 
-bouttonStart.onclick = function () {
+bouttonDebut.onclick = function () {
     compteurReset = !compteurReset;
     changementBouttons();//met a jour pour mettre le boutton en reset
     if (compteurReset) {
@@ -78,7 +88,7 @@ bouttonStart.onclick = function () {
                 }
             }, 1000);
         setInterval(diminuerTemps, 1000);//fait diminuer le temps toute les secondes
-    }else{
+    } else {
         location.reload();
     }
 }
