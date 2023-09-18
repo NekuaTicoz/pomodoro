@@ -1,15 +1,20 @@
+
+//declaration des variables
+
 let chrono = document.getElementById("chrono");
-let tempsTravail = 4;
-let tempsRepos = 4;
+let tempsTravail = 1499;
+let tempsRepos = 1499;
 let temps = tempsTravail;
 const bouttonTravail = document.getElementById("travail");
 const bouttonRepos = document.getElementById("repos");
 const bouttonDebut = document.getElementById("debut");
 compteurTravail = true; //si true alors travail sinon repos
-compteurReset = false; //si true alors pret a reset sinon start
+compteurReset = false; //si true alors pret à reset sinon start
+
+//declaration des fonctions
 
 function affichageTemps() {//affiche le temps en minutes:secondes
-    let minutes = parseInt(temps / 60, 10);
+    let minutes = parseInt(temps / 60, 10); //parseInt pour eviter les virguiles. 
     let secondes = parseInt(temps % 60, 10);
 
     minutes = minutes < 10 ? "0" + minutes : minutes;
@@ -18,29 +23,25 @@ function affichageTemps() {//affiche le temps en minutes:secondes
     chrono.innerText = `${minutes}:${secondes}`;
 }
 
-function diminuerTemps() { //permet la gestion du chrono, diminue le temps et l'arrete a 00:00 
+function diminuerTemps() { //diminue le temps et l'arrete à 00:00 
     temps = temps <= 0 ? 0 : temps - 1;
 }
 
-function travailRepos() { //verifie si on change de travail a repos et change de travail a repos (vice et versa)
+function travailRepos() { //change de travail à repos (vice et versa) et fait les actions necessaires.
     if (compteurTravail) {
         compteurTravail = false;
-    } else {
-        compteurTravail = true;
-    }
-
-    if (compteurTravail) {
         changementBouttons();
         passageTempsTravailRepos();
         changementCouleur();
     } else {
+        compteurTravail = true;
         changementBouttons();
         passageTempsTravailRepos();
         changementCouleur();
     }
 }
 
-function changementBouttons() {
+function changementBouttons() {  //met à jour les boutons
     bouttonTravail.disabled = !compteurTravail;
     bouttonRepos.disabled = compteurTravail;
     if (compteurReset) {
@@ -52,7 +53,7 @@ function changementBouttons() {
     }
 }
 
-function changementCouleur() {
+function changementCouleur() { //change la couleur du fond pour mieux montrer la difference entre travail et repos.
     if (compteurTravail) {
         document.getElementById("body").style.backgroundColor = "#ddebee";
     } else {
@@ -60,7 +61,7 @@ function changementCouleur() {
     }
 }
 
-function passageTempsTravailRepos() { //gere le changement de temps
+function passageTempsTravailRepos() { //gere le changement de temps entre repos et travail
     if (compteurTravail) {
         temps = tempsTravail + 1;
         affichageTemps(); //affiche le temps de début d'une itération
@@ -72,13 +73,11 @@ function passageTempsTravailRepos() { //gere le changement de temps
 
 //debut script
 
-
-
-changementBouttons();//met a jour les bouttons travail/repos/start
+changementBouttons();//met à jour les bouttons travail/repos/debut pour etre sur de leur contenu
 
 bouttonDebut.onclick = function () {
     compteurReset = !compteurReset;
-    changementBouttons();//met a jour pour mettre le boutton en reset
+    changementBouttons();//met à jour pour mettre le boutton en relancer
     if (compteurReset) {
         setInterval(
             () => {
@@ -87,7 +86,7 @@ bouttonDebut.onclick = function () {
                     travailRepos(); //verifie si le temps de travail/repos est fini puis fait les changements
                 }
             }, 1000);
-        setInterval(diminuerTemps, 1000);//fait diminuer le temps toute les secondes
+        setInterval(diminuerTemps, 1000);//fait diminuer le temps toutes les secondes
     } else {
         location.reload();
     }
