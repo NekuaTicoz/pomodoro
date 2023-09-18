@@ -4,6 +4,7 @@ let tempsTravail = 5;
 let tempsRepos = 4;
 const bouttonTravail = document.getElementById("travail");
 const bouttonRepos = document.getElementById("repos");
+const bouttonStart = document.getElementById("start");
 compteurTravail = true; //si true alors travail sinon repos
 
 function affichageTemps() {//affiche le temps en minutes:secondes
@@ -56,14 +57,17 @@ function passageTempsTravailRepos() { //gere le changement de temps
 //debut script
 
 
-changementBouttons();
-setInterval(
-    () => {
-        affichageTemps();//affiche le temps
-        if (temps == 0) {
-            travailRepos(); //verifie si le temps de travail/repos est fini puis fait les changements
-        }
-    }, 1000);
-setInterval(diminuerTemps, 1000);//fait diminuer le temps toute les secondes
 
+changementBouttons();
+
+bouttonStart.onclick = function () {
+    setInterval(
+        () => {
+            affichageTemps();//affiche le temps
+            if (temps == 0) {
+                travailRepos(); //verifie si le temps de travail/repos est fini puis fait les changements
+            }
+        }, 1000);
+    setInterval(diminuerTemps, 1000);//fait diminuer le temps toute les secondes
+}
 
