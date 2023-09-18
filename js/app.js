@@ -1,11 +1,12 @@
 let chrono = document.getElementById("chrono");
-let temps = 5;
-let tempsTravail = 5;
+let tempsTravail = 7;
 let tempsRepos = 4;
+let temps = tempsTravail;
 const bouttonTravail = document.getElementById("travail");
 const bouttonRepos = document.getElementById("repos");
 const bouttonStart = document.getElementById("start");
 compteurTravail = true; //si true alors travail sinon repos
+compteurReset = false; //si true alors pret a reset sinon start
 
 function affichageTemps() {//affiche le temps en minutes:secondes
     let minutes = parseInt(temps / 60, 10);
@@ -42,6 +43,11 @@ function travailRepos() { //verifie si on change de travail a repos et change de
 function changementBouttons() {
     bouttonTravail.disabled = !compteurTravail;
     bouttonRepos.disabled = compteurTravail;
+    if (compteurReset) {
+        bouttonStart.className = "fa-solid fa-rotate-right fa-2xl";
+    } else {
+        bouttonStart.className = "fa-solid fa-check fa-2xl";
+    }
 }
 
 function passageTempsTravailRepos() { //gere le changement de temps
@@ -58,16 +64,22 @@ function passageTempsTravailRepos() { //gere le changement de temps
 
 
 
-changementBouttons();
+changementBouttons();//met a jour les bouttons travail/repos/start
 
 bouttonStart.onclick = function () {
-    setInterval(
-        () => {
-            affichageTemps();//affiche le temps
-            if (temps == 0) {
-                travailRepos(); //verifie si le temps de travail/repos est fini puis fait les changements
-            }
-        }, 1000);
-    setInterval(diminuerTemps, 1000);//fait diminuer le temps toute les secondes
+    compteurReset = !compteurReset;
+    changementBouttons();//met a jour pour mettre le boutton en reset
+    if (compteurReset) {
+        setInterval(
+            () => {
+                affichageTemps();//affiche le temps
+                if (temps == 0) {
+                    travailRepos(); //verifie si le temps de travail/repos est fini puis fait les changements
+                }
+            }, 1000);
+        setInterval(diminuerTemps, 1000);//fait diminuer le temps toute les secondes
+    }else{
+        location.reload();
+    }
 }
 
