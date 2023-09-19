@@ -48,6 +48,10 @@ body {
     padding-top: 35%;
 }
 
+input[type="range"] {
+    margin: 0;
+  }
+
 footer {
     text-align: center;
     background-color: black;
