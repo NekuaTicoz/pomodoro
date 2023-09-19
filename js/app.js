@@ -2,14 +2,25 @@
 //declaration des variables
 
 let chrono = document.getElementById("chrono");
-let tempsTravail = 1499;
-let tempsRepos = 1499;
-let temps = tempsTravail;
+let temps;
+let tempsTravail = document.getElementById("travailTemps");
+let tempsRepos = document.getElementById("reposTemps");
 const bouttonTravail = document.getElementById("travail");
 const bouttonRepos = document.getElementById("repos");
 const bouttonDebut = document.getElementById("debut");
 compteurTravail = true; //si true alors travail sinon repos
 compteurReset = false; //si true alors pret à reset sinon start
+
+//change les temps écrit a coté des slider qui permettent de changer le temps et change le temps actuellement écrit
+
+tempsTravail.onchange = function(){
+    document.getElementById("texteTravail").textContent = "Temps Travail: " +this.value+ " minutes";
+    chrono.textContent= (this.value< 10 ? "0" + this.value : this.value)+":00";
+}
+tempsRepos.onchange = function(){
+    document.getElementById("texteRepos").textContent = "Temps Repos: " +this.value+ " minutes";
+}
+
 
 //declaration des fonctions
 
@@ -63,10 +74,10 @@ function changementCouleur() { //change la couleur du fond pour mieux montrer la
 
 function passageTempsTravailRepos() { //gere le changement de temps entre repos et travail
     if (compteurTravail) {
-        temps = tempsTravail + 1;
+        temps = tempsTravail+1;
         affichageTemps(); //affiche le temps de début d'une itération
     } else {
-        temps = tempsRepos + 1;
+        temps = tempsRepos+1;
         affichageTemps();//affiche le temps de début d'une itération (évite l'affichage d'un 00:00 et d'un secondes perdu pour l'itération suivante)
     }
 }
@@ -76,6 +87,12 @@ function passageTempsTravailRepos() { //gere le changement de temps entre repos 
 changementBouttons();//met à jour les bouttons travail/repos/debut pour etre sur de leur contenu
 
 bouttonDebut.onclick = function () {
+
+    //prend le temps actuelle sur les barres coulisantes pour initier les temps de travail, de repos, et le temps actuel
+    tempsTravail=parseInt(tempsTravail.value)*60-1;
+    tempsRepos=parseInt(tempsRepos.value)*60-1;    
+    temps = tempsTravail;
+
     compteurReset = !compteurReset;
     changementBouttons();//met à jour pour mettre le boutton en relancer
     if (compteurReset) {

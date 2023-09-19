@@ -26,13 +26,13 @@ h1 {
 
 body {
     text-align: center;
-    padding-top: 1%;
+    padding-top: 2%;
     background-color: #ddebee;
 }
 
 #boiteChrono {
-    height: 500px;
-    width: 500px;
+    height: 250px;
+    width: 250px;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: auto;
@@ -45,7 +45,7 @@ body {
 
 #chrono {
     font-size: 40px;
-    padding-top: 45%;
+    padding-top: 35%;
 }
 
 footer {
