@@ -3,32 +3,27 @@
     padding: 0;
 }
 
-#debut {
-    height: 50px;
-    margin-top: 2%;
-    padding-left: 2%;
-    padding-right: 2%;
-}
-
 #travail,
 #repos {
-    font-family: 'Courier New', Courier, monospace;
     font-size: 200%;
     min-height: fit-content;
     height: 50px;
     min-height: fit-content;
     width: 200PX;
     margin: -5px;
+    margin-top: 20px;
+    font-family: skranji;
 }
 
 h1 {
-    margin-top: 20px;
+    margin: auto;
 }
 
 body {
     text-align: center;
     padding-top: 2%;
     background-color: #ddebee;
+    font-family: skranji;
 }
 
 #boiteChrono {
@@ -46,16 +41,16 @@ body {
 
 #chrono {
     font-size: 40px;
-    padding-top: 35%;
+    padding-top: 40%;
 }
 
-#barreCoulissante{
+#barreCoulissante {
     margin-top: 2%;
 }
 
 input[type="range"] {
     width: 150px;
-    height:5px;
+    height: 5px;
     margin: auto;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -65,18 +60,26 @@ input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
     background: teal;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
+    -webkit-appearance: none;
+    /* Override default look */
     appearance: none;
     border: solid black 1px;
     background-color: #ddebee;
     border-radius: 50%;
     width: 10px;
-    height: 10px;  
- }
+    height: 10px;
+}
+
+#debut {
+    height: 50px;
+    margin-top: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
 
 footer {
     text-align: center;
