@@ -5,6 +5,7 @@
 
 #debut {
     height: 50px;
+    margin-top: 2%;
     padding-left: 2%;
     padding-right: 2%;
 }
@@ -48,9 +49,34 @@ body {
     padding-top: 35%;
 }
 
+#barreCoulissante{
+    margin-top: 2%;
+}
+
 input[type="range"] {
-    margin: 0;
-  }
+    width: 150px;
+    height:5px;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: block;
+    border: black solid 1px;
+
+    -webkit-appearance: none;
+    appearance: none;
+    background: teal;
+    cursor:pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    border: solid black 1px;
+    background-color: #ddebee;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;  
+ }
 
 footer {
     text-align: center;

@@ -13,11 +13,11 @@ compteurReset = false; //si true alors pret à reset sinon start
 
 //change les temps écrit a coté des slider qui permettent de changer le temps et change le temps actuellement écrit
 
-tempsTravail.onchange = function(){
+tempsTravail.oninput = function(){
     document.getElementById("texteTravail").textContent = "Temps Travail: " +this.value+ " minutes";
     chrono.textContent= (this.value< 10 ? "0" + this.value : this.value)+":00";
 }
-tempsRepos.onchange = function(){
+tempsRepos.oninput = function(){
     document.getElementById("texteRepos").textContent = "Temps Repos: " +this.value+ " minutes";
 }
 
